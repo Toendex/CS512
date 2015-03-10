@@ -1,1 +1,1 @@
-# CS512 final project
+# CS512
