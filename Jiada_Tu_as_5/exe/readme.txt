@@ -1,0 +1,1 @@
+The program only works if there is a camera connected to the computer. It doesn’t take video as input.

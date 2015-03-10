@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0060)http://www.cs.iit.edu/~agam/cs512/assignments/hw4/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CS-512 - Assignment 4 (5%)</title>
+<meta name="description" content="CS-512 - Assignment 4 (5%)">
+<meta name="keywords" content="cs512-hw4">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<meta name="Generator" content="LaTeX2HTML v2008">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="http://www.cs.iit.edu/~agam/cs512/assignments/hw4/cs512-hw4.css">
+
+<style type="text/css"></style></head>
+
+<body>
+
+<p>
+
+</p><p>
+</p><h1 align="CENTER">CS-512 - Assignment 4 (5%)</h1>
+<div>
+
+<p align="CENTER"><strong>Stereo vision</strong></p>
+<p align="CENTER"><strong>Due by: April 22, 2014</strong></p>
+</div>
+
+<p>
+
+</p><h2><a name="SECTION00001000000000000000">
+Assignment Specifications</a>
+</h2>
+
+<p>
+In this assignment you need to implement one of several stereo vision
+algorithms: locating and drawing epipolar lines of an uncalibrated
+stereo pair, structure reconstruction from an uncalibrated stereo pair,
+or rectification of an uncalibrated stereo pair.
+
+</p><ul>
+<li>The input image should always be converted to grayscale before
+  processing it.
+</li>
+<li>The main parameters of each algorithm should be made available
+  for interactive manipulation through keyboard/mouse/trackbar
+  interaction.
+</li>
+<li>You may NOT use the OpenCV function which directly implements
+  the algorithm you choose. You may, however, use it for verification
+  purposes. You may use other OpenCV functions as necessary.
+</li>
+<li>Your program must include a help key describing its functionality.
+</li>
+<li>You need to evaluate the performance of the algorithm you choose
+  using test data. The results of your evaluation should be included in
+  your report. Try to determine the strengths and weaknesses of the
+  algorithm.
+</li>
+<li>For submission instructions and the necessary format of the
+  report please refer to assignment 1.
+</li>
+</ul>
+
+<p>
+
+</p><h2><a name="SECTION00002000000000000000">
+Epipolar lines estimation</a>
+</h2>
+
+<p>
+
+</p><ul>
+<li>Given a stereo pair as the command line argument to the program,
+  load and the display the images next to each other.
+
+<p>
+</p></li>
+<li>The user is then allowed to specify a set of corresponding
+  points in the images using the mouse.
+
+<p>
+</p></li>
+<li>Using the set of corresponding points specified by the user,
+  estimate the fundamental matrix relating the two views and display the
+  estimated matrix. Normalize the points before computing
+  the fundamental matrix and make sure that the estimated fundamental
+  matrix is a rank 2 matrix.
+
+<p>
+</p></li>
+<li>Using the estimated fundamental matrix, let the user select a
+  point in one image, and display the corresponding epipolar line in the
+  second image. The user should be able to select points in both the left
+  and right images.
+
+<p>
+</p></li>
+<li>Using the estimated fundamental matrix, compute and display
+  (numerically) the coordinates of the left and right epipoles.
+
+<p>
+</p></li>
+<li>Test stereo images are available on the cs512 website. In
+  addition, test the algorithm on images you take yourself.
+
+<p>
+</p></li>
+</ul>
+
+<p>
+
+</p><h2><a name="SECTION00003000000000000000">
+Model reconstruction</a>
+</h2>
+
+<p>
+
+</p><ul>
+<li>Given a set of two views in which the intrinsic camera
+  parameters are KNOWN (the extrinsic camera parameters are assumed
+  UNKNOWN), and a set of corresponding points in the two views,
+  reconstruct 3D points on the surface of the unknown object. 
+
+<p>
+</p></li>
+<li>Using a subset of the provided corresponding points, estimate
+  the fundamental matrix relating the two views and display the
+  estimated matrix. Make sure that the estimated fundamental matrix has
+  a rank of 2. Using the knowledge of the intrinsic parameters compute
+  and display the essential matrix. 
+
+<p>
+</p></li>
+<li>Using the essential matrix, estimate up to an unknown sign the
+  rotation and translation between the views and display them. Note that
+  the true extrinsic parameters are provided so that you can verify your
+  computations.
+
+<p>
+</p></li>
+<li>Reconstruct the 3D points using the obtained rotation and
+  translation and choose a consistent solution.
+
+<p>
+</p></li>
+<li>The corresponding points are described in a text file. The first
+  line in this file contains the number of matched points. Subsequent
+  lines contain the description of pairs of corresponding points. Each
+  pair of corresponding points is described by 4 coordinates: <img width="24" height="33" align="MIDDLE" border="0" src="./CS-512 - Assignment 4 (5%)_files/img1.png" alt="$x_r$">,
+  <img width="22" height="33" align="MIDDLE" border="0" src="./CS-512 - Assignment 4 (5%)_files/img2.png" alt="$y_r$">, <img width="21" height="33" align="MIDDLE" border="0" src="./CS-512 - Assignment 4 (5%)_files/img3.png" alt="$x_l$">, <img width="20" height="33" align="MIDDLE" border="0" src="./CS-512 - Assignment 4 (5%)_files/img4.png" alt="$y_l$">, where <img width="61" height="37" align="MIDDLE" border="0" src="./CS-512 - Assignment 4 (5%)_files/img5.png" alt="$(x_r,y_r)$"> and <img width="56" height="37" align="MIDDLE" border="0" src="./CS-512 - Assignment 4 (5%)_files/img6.png" alt="$(x_l,y_l)$"> are
+  corresponding points.
+
+<p>
+</p></li>
+<li>The reconstructed points should be saved in a VRML file as a 3D
+  point cloud and rendered using an external VRML viewer
+  (alternatively, write a simple OpenGl program to display the points 
+  which allows for rotating the points and zooming in/out).
+  Generation surfaces between the points is not required.
+
+<p>
+</p></li>
+<li>A calibrated image pair with a dense correspondence and known
+  intrinsic/extrinsic parameters is available on the cs512 website. In
+  addition, test the algorithm on images you take yourself.
+
+<p>
+</p></li>
+</ul>
+
+<p>
+
+</p><h2><a name="SECTION00004000000000000000">
+Rectification</a>
+</h2>
+
+<p>
+
+</p><ul>
+<li>Given a stereo pair as the command line argument to the program,
+  load and the display the images next to each other.
+  The user is then allowed to specify a set of corresponding
+  points in the images using the mouse.
+
+<p>
+</p></li>
+<li>Using the set of corresponding points specified by the user,
+  estimate the fundamental matrix relating the two views and display the
+  estimated matrix. Make sure that the estimated fundamental matrix is a
+  rank 2 matrix.
+
+<p>
+</p></li>
+<li>Given the KNOWN intrinsic parameters of the camera, determine
+  the essential matrix relating the views. Using the essential matrix,
+  estimate up to an unknown sign the rotation and translation between the
+  views and display them. Assume that the correct sign is given to you
+  (the true extrinsic parameters are provided for verification purposes). 
+
+<p>
+</p></li>
+<li>Using the ESTIMATED extrinsic parameters and the KNOWN intrinsic
+  parameters compute and the display the rectification transformation
+  matrix that has to be applied to the left and right views.
+
+<p>
+</p></li>
+<li>Apply the estimated transformations to warp the left and right
+  views and display the resulting images next to each other.
+
+<p>
+</p></li>
+<li>A calibrated image pair with known intrinsic/extrinsic
+  parameters is available on the cs512 website. In
+  addition, test the algorithm on images you take yourself.
+
+<p>
+</p></li>
+</ul>
+
+<p>
+<br></p><hr>
+<address>
+Gady Agam
+2014-04-08
+</address>
+
+
+</body></html>

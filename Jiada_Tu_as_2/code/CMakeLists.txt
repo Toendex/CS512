@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( as2 )
+find_package( OpenCV REQUIRED )
+add_executable( as2 osx.cpp Timer.cpp myPoint.cpp )
+target_link_libraries( as2 ${OpenCV_LIBS} )
